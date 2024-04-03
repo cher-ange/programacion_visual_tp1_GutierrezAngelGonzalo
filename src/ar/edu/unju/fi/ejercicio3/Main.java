@@ -2,25 +2,35 @@ package ar.edu.unju.fi.ejercicio3;
 
 import java.util.Scanner;
 
+/**
+ * 3. Uso de variables - Estructura de control condicional.
+ *
+ * @author Gutierrez Angel Gonzalo
+ * @version 1.0
+ */
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        final int userInputNumber;
 
-        System.out.print("Ingresa un número: ");
-        int userInputNumber = scanner.nextInt();
+        userInputNumber = getInteger("Ingresa un número", scanner);
 
-        System.out.println("Número ingresado: " + userInputNumber);
-        System.out.println(answer(userInputNumber));
+        System.out.println("Resultado: " + exerciseAnswer(userInputNumber));
 
         scanner.close();
     }
 
-    public static boolean isEven(int number) {
+    public static int getInteger(String message, Scanner scanner) {
+        System.out.print(message + ": ");
+        return scanner.nextInt();
+    }
+
+    public static boolean isEven(final int number) {
         return number % 2 == 0;
     }
 
-    public static int answer(int number) {
+    public static int exerciseAnswer(final int number) {
         return isEven(number) ? number*3 : number*2;
     }
 

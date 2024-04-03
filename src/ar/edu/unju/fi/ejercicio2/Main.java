@@ -1,16 +1,22 @@
 package ar.edu.unju.fi.ejercicio2;
 
+/**
+ * 2. Uso de variables.
+ *
+ * @author Gutierrez Angel Gonzalo
+ * @version 1.0
+ */
 public class Main {
 
     public static void main(String[] args) {
-        String countryName = "Argentina";
-        int personAge = 34;
-        double buildingHeight = 24.6d;
-        double productPrice = 18.4d;
-        String phoneNumber = "3881112222";
-        double cosineOfZeroPointFive = Math.cos(0.5f);
+        final String countryName = "Argentina";
+        final int personAge = 34;
+        final double buildingHeight = 24.6d;
+        final double productPrice = 18.4d;
+        final String phoneNumber = "3881112222";
+        final double cosineOfZeroPointFive = Math.cos(0.5f);
 
-        String outputMessage = """
+        final String exerciseAnswer = """
             El nombre de un país: %s
             La edad de una persona: %d
             La altura de un edificio: %.2f
@@ -25,7 +31,7 @@ public class Main {
                 cosineOfZeroPointFive
             );
 
-        System.out.println(outputMessage);
+        System.out.println(exerciseAnswer);
     }
 
 }
