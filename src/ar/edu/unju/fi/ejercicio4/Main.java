@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.ejercicio4;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -11,24 +12,39 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         final int userInputNumber;
 
-        userInputNumber = getInteger("Ingresa un número", scanner);
+        userInputNumber = getUserInput(
+            "Ingrese un número entero",
+            "El número entero ingresado debe estar comprendido entre el [0-10]"
+        );
 
         System.out.println(
             "El factorial de " + userInputNumber + " es: " + calculateFactorial(userInputNumber)
         );
-
-        scanner.close();
     }
 
-    public static int getInteger(String message, Scanner scanner) {
-        System.out.print(message + ": ");
-        return scanner.nextInt();
+    public static int getUserInput(final String inputMessage, final String errorMessage) {
+        int validatedUserInput;
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                try {
+                    System.out.print(inputMessage + ": ");
+                    validatedUserInput = scanner.nextInt();
+                    if (!isInRange(validatedUserInput)) {
+                        System.out.println(errorMessage);
+                    } else {
+                        return validatedUserInput;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("ERROR: El valor introducido no es un número entero");
+                    scanner.nextLine();
+                }
+            }
+        }
     }
 
-    public static boolean validateInput(final int number) {
+    public static boolean isInRange(final int number) {
         return  !(number < 0 || number > 10);
     }
 
