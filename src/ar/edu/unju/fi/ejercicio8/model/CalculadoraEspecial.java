@@ -24,6 +24,7 @@ public class CalculadoraEspecial {
     /**
      * Realiza la sumatoria con límite inferior <code>k = 1</code> hasta <code>n</code>.
      * @param n Límite superior
+     * @return El cálculo de la sumatoria
      */
     public int calcularSumatoria(final int n) {
         int sumatoria = 0, numerador;
@@ -39,8 +40,8 @@ public class CalculadoraEspecial {
 
     /**
      * Realiza la productoria con límite inferior <code>k = 1</code> hasta <code>n</code>.
-     * @param n
-     * @return
+     * @param n Límite superior
+     * @return El cálculo de la productoria
      */
     public int calcularProductoria(final int n) {
         int productoria = 1;

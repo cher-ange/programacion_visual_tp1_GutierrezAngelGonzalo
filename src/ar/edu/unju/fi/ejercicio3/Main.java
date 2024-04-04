@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.ejercicio3;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,29 +10,31 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Main {
+    static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        final int userInputNumber;
+        final int numero;
 
-        userInputNumber = getInteger("Ingresa un número", scanner);
+        try {
+            numero = ingresarNumero("Ingresa un número");
 
-        System.out.println("Resultado: " + exerciseAnswer(userInputNumber));
-
-        scanner.close();
+            System.out.println("Resultado: " + calcularValorFinal(numero));
+        } catch (InputMismatchException e) {
+            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
+        }
     }
 
-    public static int getInteger(String message, Scanner scanner) {
-        System.out.print(message + ": ");
+    public static int ingresarNumero(String mensaje) {
+        System.out.print(mensaje + ": ");
         return scanner.nextInt();
     }
 
-    public static boolean isEven(final int number) {
-        return number % 2 == 0;
+    public static boolean parOImpar(final int numero) {
+        return numero % 2 == 0;
     }
 
-    public static int exerciseAnswer(final int number) {
-        return isEven(number) ? number*3 : number*2;
+    public static int calcularValorFinal(final int numero) {
+        return parOImpar(numero) ? numero*3 : numero*2;
     }
 
 }

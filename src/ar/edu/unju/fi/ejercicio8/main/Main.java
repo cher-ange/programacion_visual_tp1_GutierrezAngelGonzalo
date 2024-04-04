@@ -12,7 +12,6 @@ import ar.edu.unju.fi.ejercicio8.model.CalculadoraEspecial;
  * @version 1.0
  */
 public class Main {
-
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -25,7 +24,7 @@ public class Main {
             System.out.println("Cálculo Sumatoria: " + calculadoraEspecial.calcularSumatoria(limiteSuperior));
             System.out.println("Cálculo Productoria: " + calculadoraEspecial.calcularProductoria(limiteSuperior));
         } catch (InputMismatchException e) {
-            System.out.println("ERROR: Ocurrió un error en la ejecución del programa");
+            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
     }
 
@@ -38,5 +37,4 @@ public class Main {
 
         return limiteSuperior;
     }
-
 }

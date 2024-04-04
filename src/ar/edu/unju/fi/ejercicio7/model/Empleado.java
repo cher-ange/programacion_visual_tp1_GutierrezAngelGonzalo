@@ -5,7 +5,6 @@ package ar.edu.unju.fi.ejercicio7.model;
  * @version 1.0
  */
 public class Empleado {
-
     private final Double salarioMinimo = 210000d;
     private final Double aumentoPorMeritos = 20000d;
 
@@ -69,7 +68,7 @@ public class Empleado {
         String informacionDelEmpleado;
 
         informacionDelEmpleado = """
-                ===== Información del empleado =====
+                Información del empleado
                 Nombre del empleado: %s
                 Legajo: %d
                 Salario $: %.2f

@@ -9,29 +9,28 @@ package ar.edu.unju.fi.ejercicio2;
 public class Main {
 
     public static void main(String[] args) {
-        final String countryName = "Argentina";
-        final int personAge = 34;
-        final double buildingHeight = 24.6d;
-        final double productPrice = 18.4d;
-        final String phoneNumber = "3881112222";
-        final double cosineOfZeroPointFive = Math.cos(0.5f);
+        final String nombreDeUnPais = "Argentina";
+        final int edadDeUnaPersona = 34;
+        final double alturaDeUnEdificio = 24.6d;
+        final double precioDeUnProducto = 18.4d;
+        final String numeroDeTelefono = "3881112222";
+        final double cocenoDeCeroPuntoCinco = Math.cos(0.5f);
 
-        final String exerciseAnswer = """
+        final String respuesta = """
             El nombre de un país: %s
             La edad de una persona: %d
             La altura de un edificio: %.2f
             El precio de un producto de supermercado: %.2f
             Número de teléfono: %s
             El cálculo de coseno de 0.5: %.2f""".formatted(
-                countryName,
-                personAge,
-                buildingHeight,
-                productPrice,
-                phoneNumber,
-                cosineOfZeroPointFive
+                nombreDeUnPais,
+                edadDeUnaPersona,
+                alturaDeUnEdificio,
+                precioDeUnProducto,
+                numeroDeTelefono,
+                cocenoDeCeroPuntoCinco
             );
 
-        System.out.println(exerciseAnswer);
+        System.out.println(respuesta);
     }
-
 }

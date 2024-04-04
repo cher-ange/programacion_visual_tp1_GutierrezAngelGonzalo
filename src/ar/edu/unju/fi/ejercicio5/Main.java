@@ -10,47 +10,47 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Main {
+    static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        final int userInputNumber;
+        final int numero;
 
-        userInputNumber = getUserInput(
-        "Ingrese un número entero",
-        "ERROR: El número entero ingresado debe estar comprendido entre el [1-9]"
-        );
+        try (scanner) {
+            numero = ingresarNumero(
+                "Ingrese un número entero",
+                "ERROR: El número entero ingresado debe estar comprendido entre el [1-9]"
+            );
 
-        showMultiplicationTable(userInputNumber);
+            mostrarTablaDeMultiplicar(numero);
+        } catch (InputMismatchException e) {
+            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
+        }
     }
 
-    public static int getUserInput(final String inputMessage, final String errorMessage) {
-        int validatedUserInput;
-        try (Scanner scanner = new Scanner(System.in)) {
-            while (true) {
-                try {
-                    System.out.print(inputMessage + ": ");
-                    validatedUserInput = scanner.nextInt();
-                    if (!isInRange(validatedUserInput)) {
-                        System.out.println(errorMessage);
-                    } else {
-                        return validatedUserInput;
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("ERROR: El valor introducido no es un número entero");
-                    scanner.nextLine();
-                }
+    public static int ingresarNumero(final String mensajeEntrada, final String mensajeError) {
+        int numeroIngresado;
+
+        while (true) {
+            System.out.print(mensajeEntrada + ": ");
+            numeroIngresado = scanner.nextInt();
+
+            if (!seEncuentraEnRangoValido(validatedUserInput)) {
+                System.out.println(mensajeError);
+            } else {
+                return numeroIngresado;
             }
         }
     }
 
-    public static boolean isInRange(final int number) {
-        return  !(number < 1 || number > 9);
+    public static boolean seEncuentraEnRangoValido(final int numero) {
+        return  !(numero < 1 || numero > 9);
     }
 
-    public static void showMultiplicationTable(final int number) {
-        System.out.println("Tabla de multiplicar del " + number);
+    public static void mostrarTablaDeMultiplicar(final int numero) {
+        System.out.println("Tabla de multiplicar del n.º " + numero);
+
         for(byte i = 0; i <= 10; i++) {
-            System.out.println(number + " x " + i + " = " + number*i);
+            System.out.println(numero + " x " + i + " = " + numero*i);
         }
     }
-
 }

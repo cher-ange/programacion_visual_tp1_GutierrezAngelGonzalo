@@ -22,16 +22,19 @@ public class Main {
         final double salario;
 
         try (scanner) {
-            System.out.println("===== Ingreso de datos del empleado =====");
+            System.out.println("Ingreso de datos del empleado");
+
             nombre = ingresarNombre("Ingrese el nombre");
             legajo = ingresarLegajo("Ingrese el número de legajo");
             salario = ingresarSalario("Ingrese el salario a percibir");
+
             empleado = new Empleado(nombre, legajo, salario);
+
             empleado.mostrarInformacionDelEmpleado();
             empleado.incrementarSalario();
             empleado.mostrarInformacionDelEmpleado();
         } catch (InputMismatchException e) {
-            System.out.println("ERROR: Ocurrió un error en la ejecución del programa");
+            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
     }
 

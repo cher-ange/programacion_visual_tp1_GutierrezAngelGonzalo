@@ -8,7 +8,6 @@ import java.time.Period;
  * @version 1.0
  */
 public class Persona {
-
     private String dni;
     private String nombre;
     private LocalDate fechaDeNacimiento;
@@ -78,25 +77,25 @@ public class Persona {
         this.provincia = provincia;
     }
 
-    public int calculateAge(LocalDate birthdate) {
-        return Period.between(birthdate, LocalDate.now()).getYears();
+    public int calcularEdad(LocalDate fechaDeNacimiento) {
+        return Period.between(fechaDeNacimiento, LocalDate.now()).getYears();
     }
 
-    public boolean isUnderage(final int age) {
-        return (age > 18) ? true : false;
+    public boolean esMenorDeEdad(final int edad) {
+        return (edad > 18) ? true : false;
     }
 
-    public void showPersonalInformation() {
-        final String underageMessage;
-        final String personalInformation;
+    public void mostrarInformacionPersonal() {
+        final String mensajeSegunEdad;
+        final String informacionPersonal;
 
-        if (isUnderage(calculateAge(fechaDeNacimiento))) {
-            underageMessage = "La persona es mayor de edad";
+        if (esMenorDeEdad(calcularEdad(fechaDeNacimiento))) {
+            mensajeSegunEdad = "La persona es mayor de edad";
         } else {
-            underageMessage = "La persona no es mayor de edad";
+            mensajeSegunEdad = "La persona no es mayor de edad";
         }
 
-        personalInformation = """
+        informacionPersonal = """
             Información Personal
             Nombre: %s
             DNI: %s
@@ -107,9 +106,9 @@ public class Persona {
                 dni,
                 fechaDeNacimiento.toString(),
                 provincia,
-                underageMessage);
+                mensajeSegunEdad);
 
-        System.out.println(personalInformation);
+        System.out.println(informacionPersonal);
     }
 
 

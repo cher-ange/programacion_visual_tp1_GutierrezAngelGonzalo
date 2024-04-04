@@ -11,28 +11,27 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        final int numberOne = 8,
-            numberTwo = 5,
-            numberThree = 1,
-            numberFour = 20,
-            numberFive = 9;
-        final double average;
+        final int numeroUno = 8,
+            numeroDos = 5,
+            numeroTres = 1,
+            numeroCuatro = 20,
+            numeroCinco = 9;
+        final double promedio;
 
-        int[] integers = {
-            numberOne,
-            numberTwo,
-            numberThree,
-            numberFour,
-            numberFive
+        int[] numeros = {
+            numeroUno,
+            numeroDos,
+            numeroTres,
+            numeroCuatro,
+            numeroCinco
         };
 
-        average = calculateAverage(integers);
+        promedio = calcularPromedio(numeros);
 
-        System.out.println("El promedio es: " + average);
+        System.out.println("El promedio es: " + promedio);
     }
 
-    public static double calculateAverage(int[] arrayOfIntegers) {
-        return (double) Arrays.stream(arrayOfIntegers).sum() / arrayOfIntegers.length;
+    public static double calcularPromedio(int[] numeros) {
+        return (double) Arrays.stream(numeros).sum() / numeros.length;
     }
-
 }
