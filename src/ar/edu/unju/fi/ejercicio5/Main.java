@@ -34,7 +34,7 @@ public class Main {
             System.out.print(mensajeEntrada + ": ");
             numeroIngresado = scanner.nextInt();
 
-            if (!seEncuentraEnRangoValido(validatedUserInput)) {
+            if (!seEncuentraEnRangoValido(numeroIngresado)) {
                 System.out.println(mensajeError);
             } else {
                 return numeroIngresado;
@@ -43,7 +43,7 @@ public class Main {
     }
 
     public static boolean seEncuentraEnRangoValido(final int numero) {
-        return  !(numero < 1 || numero > 9);
+        return !(numero < 1 || numero > 9);
     }
 
     public static void mostrarTablaDeMultiplicar(final int numero) {
