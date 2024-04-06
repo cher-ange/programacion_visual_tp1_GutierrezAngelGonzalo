@@ -39,7 +39,7 @@ public class Pizza {
         this.ingredientesEspeciales = ingredientesEspeciales;
     }
 
-    public int calcularPrecio() {
+    public void calcularPrecio() {
         int precio;
 
         switch (diametro) {
@@ -68,11 +68,9 @@ public class Pizza {
                 precio = this.precio;
                 break;
         }
-
-        return precio;
     }
 
     public void calcularArea() {
-        this.area = Math.PI * Math.pow(this.diametro/2, 2);
+        this.area = Math.PI * Math.pow((double) this.diametro / 2, 2);
     }
 }

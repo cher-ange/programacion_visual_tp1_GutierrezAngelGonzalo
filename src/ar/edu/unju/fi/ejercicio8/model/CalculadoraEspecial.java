@@ -32,7 +32,7 @@ public class CalculadoraEspecial {
 
         for (int k = 1; k <= n; k++) {
             numerador = k * (k+1);
-            sumatoria += Math.pow((numerador / denominador), 2);
+            sumatoria += (int) Math.pow(((double) numerador / denominador), 2);
         }
 
         return sumatoria;

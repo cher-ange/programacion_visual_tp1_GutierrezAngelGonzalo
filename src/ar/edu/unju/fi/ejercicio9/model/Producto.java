@@ -53,7 +53,7 @@ public class Producto {
                 Nombre del producto: %s
                 Código: %d
                 Precio: %.2f
-                Descuento: %d
+                Descuento: %d %%
                 """.formatted(
                     nombre,
                     codigo,

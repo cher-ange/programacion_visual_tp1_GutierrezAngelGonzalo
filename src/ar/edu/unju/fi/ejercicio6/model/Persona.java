@@ -82,7 +82,7 @@ public class Persona {
     }
 
     public boolean esMenorDeEdad(final int edad) {
-        return (edad > 18) ? true : false;
+        return edad > 18;
     }
 
     public void mostrarInformacionPersonal() {

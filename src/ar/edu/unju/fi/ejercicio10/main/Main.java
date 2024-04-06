@@ -41,7 +41,7 @@ public class Main {
                 20 - Pizza pequeña
                 30 - Pizza mediana
                 40 - Pizza grande
-                Ingrese el diámetro de la pizza:""");
+                Ingrese el diámetro de la pizza:\s""");
             diametro = scanner.nextInt();
 
             if (validarDiametro(diametro)) {
@@ -54,12 +54,18 @@ public class Main {
     }
 
     public static boolean ordenarConIngredientesEspeciales() {
-        System.out.print("""
-            ¿Desea su pizza con ingredientes especiales?
-            1 - Si
-            2 - No
-            : """);
-        return scanner.nextLine().charAt(0) == '1' ? true : false;
+        String respuesta;
+
+        while (true) {
+            System.out.print("¿Desea su pizza con ingredientes especiales? [true/false]: ");
+            respuesta = scanner.nextLine().toLowerCase();
+
+            if (respuesta.equals("true") || respuesta.equals("false")) {
+                return Boolean.parseBoolean(respuesta);
+            } else {
+                System.out.println("ERROR: Solo se permiten los valores true or false");
+            }
+        }
     }
 
     public static boolean validarDiametro(int diametro) {

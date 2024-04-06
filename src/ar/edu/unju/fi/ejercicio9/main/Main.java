@@ -26,6 +26,7 @@ public class Main {
         Producto producto;
 
         for (int i = 0; i < 3; i++) {
+            System.out.println("Ingrese datos del producto");
             producto = new Producto();
             producto.setNombre(ingresarNombre("Ingrese el nombre"));
             producto.setCodigo(ingresarCodigo("Ingrese el código"));
