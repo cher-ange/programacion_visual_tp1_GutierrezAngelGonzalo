@@ -14,14 +14,14 @@ public class Main {
 
     public static void main(String[] args) {
         try(scanner) {
-            String[] listaCadenaDeCaracteres = new String[ingresarLongitudArreglo()];
+            String[] nombresDePersona = new String[ingresarLongitudArreglo()];
 
-            for (int i = 0; i < listaCadenaDeCaracteres.length; i++) {
-                listaCadenaDeCaracteres[i] = ingresarNombreDePersona();
-                System.out.printf("Indice [%d] - Valor: %s%n", i, listaCadenaDeCaracteres[i]);
+            for (int i = 0; i < nombresDePersona.length; i++) {
+                nombresDePersona[i] = ingresarNombreDePersona();
+                System.out.printf("Indice [%d] - Valor: %s%n", i, nombresDePersona[i]);
             }
 
-            mostrarContenidoArregloInvertido(listaCadenaDeCaracteres);
+            mostrarContenidoArregloInvertido(nombresDePersona);
 
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
