@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.ejercicio13;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -10,15 +11,16 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         int[] listaNumeros = new int[8];
 
-        for (int i = 0; i < listaNumeros.length; i++) {
-            System.out.print("Ingrese un número: ");
-            listaNumeros[i] = scanner.nextInt();
-            System.out.printf("Indíce: [%d] Valor: %d%n", i, listaNumeros[i]);
+        try(Scanner scanner = new Scanner(System.in)) {
+            for (int i = 0; i < listaNumeros.length; i++) {
+                System.out.print("Ingrese un número: ");
+                listaNumeros[i] = scanner.nextInt();
+                System.out.printf("Indíce: [%d] - Valor: %d%n", i, listaNumeros[i]);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
-
-        scanner.close();
     }
 }
