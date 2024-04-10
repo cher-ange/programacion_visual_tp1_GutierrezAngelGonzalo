@@ -5,8 +5,8 @@ package ar.edu.unju.fi.ejercicio7.model;
  * @version 1.0
  */
 public class Empleado {
-    private final Double salarioMinimo = 210000d;
-    private final Double aumentoPorMeritos = 20000d;
+    private final Double SALARIO_MINIMO = 210000d;
+    private final Double AUMENTO_POR_MERITOS = 20000d;
 
     private String nombre;
     private Integer legajo;
@@ -57,8 +57,7 @@ public class Empleado {
      * @return El salario actualizado del empleado
      */
     private Double inicializarSalario(Double salario) {
-        int compare = salario.compareTo(this.salarioMinimo);
-        return (compare == 1 || compare == 0) ? salario : this.salarioMinimo;
+        return Math.max(salario, SALARIO_MINIMO);
     }
 
     /**
@@ -85,6 +84,6 @@ public class Empleado {
      * Incrementa el salario del empleado sumándole el aumento por méritos.
      */
     public void incrementarSalario() {
-        this.salario = this.salario + this.aumentoPorMeritos;
+        this.salario = this.salario + this.AUMENTO_POR_MERITOS;
     }
 }

@@ -96,11 +96,37 @@ public class Persona {
     }
 
     public String determinarEstacionSegunFechaDeNacimiento() {
-        String[] estaciones = {
-                "Invierno", "Invierno", "Primavera", "Primavera", "Verano", "Verano",
-                "Verano", "Verano", "Otoño", "Otoño", "Invierno", "Invierno"
-        };
-        return estaciones[fechaDeNacimiento.get(Calendar.MONTH) + 1];
+        int dia = fechaDeNacimiento.get(Calendar.DAY_OF_MONTH);
+        int mes = fechaDeNacimiento.get(Calendar.MONTH);
+        String estacion = "";
+
+        if ((mes == 1) || (mes == 2)) {
+            estacion = "Verano";
+        } else if ((mes == 4) || (mes == 5)) {
+            estacion = "Otoño";
+        } else if ((mes == 7) || (mes == 8)) {
+            estacion = "Invierno";
+        } else if ((mes == 10) || (mes == 11)) {
+            estacion = "Primavera";
+        } else if ((mes == 3) && (dia <= 19)) {
+            estacion = "Verano";
+        } else if (mes == 3) {
+            estacion = "Otoño";
+        } else if ((mes == 6) && (dia <= 20)) {
+            estacion = "Otoño";
+        } else if (mes == 6) {
+            estacion = "Invierno";
+        } else if ((mes == 9) && (dia <= 20)) {
+            estacion = "Invierno";
+        } else if (mes == 9) {
+            estacion = "Primavera";
+        } else if ((mes == 12) && (dia <= 21)) {
+            estacion = "Primavera";
+        } else if (mes == 12) {
+            estacion = "Verano";
+        }
+
+        return estacion;
     }
 
     public void mostrarInformacion() {
