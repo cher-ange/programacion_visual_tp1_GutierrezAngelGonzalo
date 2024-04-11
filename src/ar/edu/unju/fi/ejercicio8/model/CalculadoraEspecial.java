@@ -23,14 +23,13 @@ public class CalculadoraEspecial {
 
     /**
      * Realiza la sumatoria con límite inferior <code>k = 1</code> hasta <code>n</code>.
-     * @param n Límite superior
      * @return El cálculo de la sumatoria
      */
-    public int calcularSumatoria(final int n) {
+    public int calcularSumatoria() {
         int sumatoria = 0, numerador;
         final int denominador = 2;
 
-        for (int k = 1; k <= n; k++) {
+        for (int k = 1; k <= this.numero; k++) {
             numerador = k * (k+1);
             sumatoria += (int) Math.pow(((double) numerador / denominador), 2);
         }
@@ -40,13 +39,12 @@ public class CalculadoraEspecial {
 
     /**
      * Realiza la productoria con límite inferior <code>k = 1</code> hasta <code>n</code>.
-     * @param n Límite superior
      * @return El cálculo de la productoria
      */
-    public int calcularProductoria(final int n) {
+    public int calcularProductoria() {
         int productoria = 1;
 
-        for (int k = 1; k <= n; k++) {
+        for (int k = 1; k <= this.numero; k++) {
             productoria *= k * (k+4);
         }
 

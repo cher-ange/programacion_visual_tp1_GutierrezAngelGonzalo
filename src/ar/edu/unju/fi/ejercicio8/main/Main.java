@@ -16,13 +16,12 @@ public class Main {
 
     public static void main(String[] args) {
         CalculadoraEspecial calculadoraEspecial = new CalculadoraEspecial();
-        final int limiteSuperior;
 
         try (scanner) {
-            limiteSuperior = ingresarLimiteSuperior("Ingrese el límite superior n");
+            calculadoraEspecial.setNumero(ingresarLimiteSuperior("Ingrese el límite superior n"));
 
-            System.out.println("Cálculo Sumatoria: " + calculadoraEspecial.calcularSumatoria(limiteSuperior));
-            System.out.println("Cálculo Productoria: " + calculadoraEspecial.calcularProductoria(limiteSuperior));
+            System.out.println("Cálculo Sumatoria: " + calculadoraEspecial.calcularSumatoria());
+            System.out.println("Cálculo Productoria: " + calculadoraEspecial.calcularProductoria());
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
