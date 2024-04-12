@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * 17. <code>Array</code>.
+ * 17. Interfaz <code>List</code> - Manejo de Excepciones.
  *
  * @author Gutierrez Angel Gonzalo
  * @version 1.0
@@ -43,7 +43,7 @@ public class Main {
                             getString("Ingresar nombre"),
                             getString("Ingresar apellido")
                     );
-                    case 5 -> deletePlayer(
+                    case 5 -> deletePlayerByFullName(
                             players,
                             getString("Ingresar nombre"),
                             getString("Ingresar apellido")
@@ -75,6 +75,7 @@ public class Main {
      */
     public static void addPlayer(ArrayList<Player> players) {
         Player player = new Player();
+
         System.out.println("Ingrese los datos del nuevo jugador");
         inputPlayerData(player);
         players.add(player);
@@ -155,7 +156,7 @@ public class Main {
      * @param name      Nombre del jugador
      * @param lastName  Apellido del jugador
      */
-    public static void deletePlayer(ArrayList<Player> players, String name, String lastName) {
+    public static void deletePlayerByFullName(ArrayList<Player> players, String name, String lastName) {
         if (players.isEmpty()) {
             emptyListErrorMessage();
         } else {
@@ -203,7 +204,7 @@ public class Main {
 
     /**
      * Permite el ingreso de los datos de un jugador.
-     * @param player    Un jugador con sus datos completos
+     * @param player    Un <code>Player</code> con sus datos completos
      */
     public static void inputPlayerData(Player player) {
         player.setName(getString("Ingresar nombre"));
@@ -234,28 +235,27 @@ public class Main {
         byte position;
 
         while (true) {
-            try {
-                System.out.print("""
-                        Ingresar posición
-                        1 - Delantero
-                        2 - Medio
-                        3 - Defensa
-                        4 - Arquero
-                        """);
-                inputMessage("Seleccione una opción");
-                position = Byte.parseByte(scanner.nextLine());
+            System.out.print("""
+                    Submenú: Ingresar posición
+                    1 - Delantero
+                    2 - Medio
+                    3 - Defensa
+                    4 - Arquero
+                    """);
+            position = enterOption();
 
-                if (position < 1 || position > 4) {
-                    errorMessage("Seleccione una opción validá");
-                } else {
-                    return positions[position - 1];
-                }
-            } catch (NumberFormatException e) {
-                errorMessage("Solo se permiten el ingreso de números enteros");
+            if (position < 1 || position > 4) {
+                errorMessage("Seleccione una opción validá");
+            } else {
+                return positions[position - 1];
             }
         }
     }
 
+    /**
+     * Permite crear un <code>LocalDate</code> a partir del día, mes y año introducidos por el usuario.
+     * @return  <code>LocalDate</code> a partir de los datos ingresados por el usuario.
+     */
     public static LocalDate getBirthdate() {
         final int day, month, year;
 
@@ -297,7 +297,7 @@ public class Main {
 
     public static void showMenu() {
         System.out.print("""
-                ----- MENU -----
+                Menú:
                 1 - Alta del jugador
                 2 - Mostrar los datos del jugador
                 3 - Mostrar todos los players ordenados por apellido

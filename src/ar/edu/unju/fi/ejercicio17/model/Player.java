@@ -122,7 +122,7 @@ public class Player {
                 Apellido: %s
                 Fecha de nacimiento: %s
                 Nacionalidad: %s
-                Estatura: %.2f Cm
+                Estatura: %.2f cm
                 Peso: %.2f Kg
                 Posición: %s
                 """.formatted(
