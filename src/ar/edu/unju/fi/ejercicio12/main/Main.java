@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.ejercicio12.main;
 
-import ar.edu.unju.fi.ejercicio12.model.Persona;
+import ar.edu.unju.fi.ejercicio12.model.Person;
 
 import java.util.Calendar;
 import java.util.Scanner;
@@ -12,76 +12,71 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Main {
-
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Persona persona = new Persona();
+        Person person = new Person();
 
-        persona.setNombre(ingresarNombre());
-        persona.setFechaDeNacimiento(ingresarFechaDeNacimiento());
-
-        persona.mostrarInformacion();
+        person.setName(getString());
+        person.setBirthdate(getBirthdate());
+        person.showInformation();
     }
 
-    public static String ingresarNombre() {
+    public static String getString() {
         System.out.print("Ingresar nombre: ");
         return scanner.nextLine();
     }
 
-    public static Calendar ingresarFechaDeNacimiento() {
-        Calendar fechaDeNacimiento = Calendar.getInstance();
+    public static Calendar getBirthdate() {
+        Calendar birthdate = Calendar.getInstance();
 
         System.out.println("Ingresar fecha de nacimiento");
-        fechaDeNacimiento.set(
-                ingresarPeriodo(),
-                ingresarMes(),
-                ingresarDia()
-        );
+        birthdate.set(getYear(), getMonth(), getDay());
 
-        return fechaDeNacimiento;
+        return birthdate;
     }
 
-    public static int ingresarDia() {
-        final int dia;
-
-        System.out.print("Día: ");
-        dia = scanner.nextInt();
-        scanner.nextLine();
-
-        return dia;
+    public static int getDay() {
+        return getInteger("Día");
     }
 
-    public static int ingresarMes() {
-        int mes;
-        System.out.print("Mes Nº: ");
-        mes = scanner.nextInt();
+    public static int getMonth() {
+        int month;
+        month = getInteger("Mes n.º");
 
-        switch (mes) {
-            case 1 -> mes = Calendar.JANUARY;
-            case 2 -> mes = Calendar.FEBRUARY;
-            case 3 -> mes = Calendar.MARCH;
-            case 4 -> mes = Calendar.APRIL;
-            case 5 -> mes = Calendar.MAY;
-            case 6 -> mes = Calendar.JUNE;
-            case 7 -> mes = Calendar.JULY;
-            case 8 -> mes = Calendar.AUGUST;
-            case 9 -> mes = Calendar.SEPTEMBER;
-            case 10 -> mes = Calendar.OCTOBER;
-            case 11 -> mes = Calendar.NOVEMBER;
-            case 12 -> mes = Calendar.DECEMBER;
+        switch (month) {
+            case 1 -> month = Calendar.JANUARY;
+            case 2 -> month = Calendar.FEBRUARY;
+            case 3 -> month = Calendar.MARCH;
+            case 4 -> month = Calendar.APRIL;
+            case 5 -> month = Calendar.MAY;
+            case 6 -> month = Calendar.JUNE;
+            case 7 -> month = Calendar.JULY;
+            case 8 -> month = Calendar.AUGUST;
+            case 9 -> month = Calendar.SEPTEMBER;
+            case 10 -> month = Calendar.OCTOBER;
+            case 11 -> month = Calendar.NOVEMBER;
+            case 12 -> month = Calendar.DECEMBER;
         }
 
-        return mes;
+        return month;
     }
 
-    public static int ingresarPeriodo() {
-        final int periodo;
+    public static int getYear() {
+        return getInteger("Año");
+    }
 
-        System.out.print("Año: ");
-        periodo = scanner.nextInt();
-        scanner.nextLine();
+    public static int getInteger(String message) {
+        int integerValue;
 
-        return periodo;
+        while (true) {
+            System.out.print(message + ": ");
+            try {
+                integerValue = Integer.parseInt(scanner.nextLine());
+                return integerValue;
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado debe ser un número entero");
+            }
+        }
     }
 }

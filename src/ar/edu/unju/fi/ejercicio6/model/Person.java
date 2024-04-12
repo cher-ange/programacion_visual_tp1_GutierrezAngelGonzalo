@@ -84,7 +84,7 @@ public class Person {
         this.province = province;
     }
 
-    public int calculateAge(LocalDate brithdate) {
+    public int getAge(LocalDate brithdate) {
         return Period.between(brithdate, LocalDate.now()).getYears();
     }
 
@@ -96,7 +96,7 @@ public class Person {
         final String isUnderageMessage;
         final String information;
 
-        if (isUnderAge(calculateAge(birthdate))) {
+        if (isUnderAge(getAge(birthdate))) {
             isUnderageMessage = "La persona es mayor de edad";
         } else {
             isUnderageMessage = "La persona no es mayor de edad";

@@ -13,63 +13,69 @@ public class Main {
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String[] nombresDePersona = new String[5];
+        String[] personNames = new String[5];
 
         try (scanner) {
-            for (int i = 0; i < nombresDePersona.length; i++) {
-                nombresDePersona[i] = ingresarNombreDePersona();
+            for (int i = 0; i < personNames.length; i++) {
+                personNames[i] = getString("Ingrese un nombre de persona");
             }
 
-            mostrarValoresArreglo(nombresDePersona);
-            System.out.println("Tamaño del arreglo: " + nombresDePersona.length);
+            showArrayValues(personNames);
+            System.out.println("Tamaño del arreglo: " + personNames.length);
 
-            eliminarValorArreglo(nombresDePersona);
-            mostrarValoresArreglo(nombresDePersona);
+            deleteValueFromArray(personNames);
+            showArrayValues(personNames);
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
     }
 
-    public static void eliminarValorArreglo(String[] arreglo) {
-        byte indice;
-        String auxiliar;
-        indice = ingresarIndice();
+    public static void deleteValueFromArray(String[] array) {
+        byte index;
+        String temporal;
+        index = getByte("Ingrese índice de un elemento");
 
-        if (arreglo.length - 1 == indice) {
-            arreglo[indice] = "";
+        if (array.length - 1 == index) {
+            array[index] = "";
         } else {
-            while (indice < arreglo.length-1) {
-                auxiliar = arreglo[indice + 1];
-                arreglo[indice] = auxiliar;
-                arreglo[indice + 1] = "";
-                indice++;
+            while (index < array.length-1) {
+                temporal = array[index + 1];
+                array[index] = temporal;
+                array[index + 1] = "";
+                index++;
             }
         }
     }
 
-    public static byte ingresarIndice() {
-        byte indice;
+    public static byte getByte(String message) {
+        byte byteValue = 0;
 
-        System.out.print("Ingrese índice de un elemento: ");
-        indice = scanner.nextByte();
-        scanner.nextLine();
+        do {
+            System.out.print(message + ": ");
+            try {
+                byteValue = Byte.parseByte(scanner.nextLine());
+                if (byteValue < 1 || byteValue > 5) {
+                    System.out.println("ERROR: Indicé fuera de rango");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado debe ser un número entero");
+            }
+        } while (byteValue < 1 || byteValue > 5);
 
-        return (byte) (indice - 1);
+        return (byte) (byteValue - 1);
     }
 
-    public static void mostrarValoresArreglo(String[] arreglo) {
+    public static void showArrayValues(String[] array) {
         int i = 0;
-        System.out.println(
-                "Mostrando los nombres de persona almacenados en el arreglo"
-        );
-        while (i < arreglo.length) {
-            System.out.printf("[%d]: %s%n", i+1, arreglo[i]);
+        System.out.println("Mostrando los nombres de persona almacenados en el arreglo");
+        while (i < array.length) {
+            System.out.printf("[%d]: %s%n", i + 1, array[i]);
             i++;
         }
     }
 
-    public static String ingresarNombreDePersona() {
-        System.out.print("Ingrese un nombre de persona: ");
+    public static String getString(String message) {
+        System.out.print(message + ": ");
         return scanner.nextLine();
     }
 }
