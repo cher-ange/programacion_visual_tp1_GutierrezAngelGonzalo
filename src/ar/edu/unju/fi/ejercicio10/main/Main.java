@@ -18,77 +18,79 @@ public class Main {
         Pizza pizza;
 
         try (scanner) {
-
             for (int i = 1; i <= 3; i++) {
                 pizza = new Pizza();
-                pizza.setDiametro(ingresarDiametro());
-                pizza.setIngredientesEspeciales(ordenarConIngredientesEspeciales());
-                pizza.calcularPrecio();
-                pizza.calcularArea();
-                mostrarPizza(i, pizza);
+                pizza.setDiameter(getDiameter());
+                pizza.setSpecialIngredients(orderWithSpecialIngredients());
+                pizza.calculatePrice();
+                pizza.calculateArea();
+                showInformation(i, pizza);
             }
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
     }
 
-    public static int ingresarDiametro() {
-        int diametro;
+    public static int getDiameter() {
+        int diameter;
 
         while (true) {
-            System.out.print("""
-                Pizzas disponibles
-                20 - Pizza pequeña
-                30 - Pizza mediana
-                40 - Pizza grande
-                Ingrese el diámetro de la pizza:\s""");
-            diametro = scanner.nextInt();
+            try {
+                System.out.println("""
+                        Pizzas disponibles
+                        20 - Pizza pequeña
+                        30 - Pizza mediana
+                        40 - Pizza grande""");
+                System.out.print("Ingrese el diámetro de la pizza: ");
+                diameter = Integer.parseInt(scanner.nextLine());
 
-            if (validarDiametro(diametro)) {
-                scanner.nextLine();
-                return diametro;
-            } else {
-                System.out.println("ERROR: El diámetro de las pizzas solo puede ser 20, 30 o 40.");
+                if (isValid(diameter)) {
+                    return diameter;
+                } else {
+                    System.out.println("ERROR: El diámetro de las pizzas solo puede ser 20, 30 o 40.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado debe ser un número");
             }
         }
     }
 
-    public static boolean ordenarConIngredientesEspeciales() {
-        String respuesta;
+    public static boolean orderWithSpecialIngredients() {
+        String answer;
 
         while (true) {
             System.out.print("¿Desea su pizza con ingredientes especiales? [true/false]: ");
-            respuesta = scanner.nextLine().toLowerCase();
+            answer = scanner.nextLine().toLowerCase();
 
-            if (respuesta.equals("true") || respuesta.equals("false")) {
-                return Boolean.parseBoolean(respuesta);
+            if (answer.equals("true") || answer.equals("false")) {
+                return Boolean.parseBoolean(answer);
             } else {
                 System.out.println("ERROR: Solo se permiten los valores true or false");
             }
         }
     }
 
-    public static boolean validarDiametro(int diametro) {
-        return diametro == 20 || diametro == 30 || diametro == 40;
+    public static boolean isValid(int diameter) {
+        return diameter == 20 || diameter == 30 || diameter == 40;
     }
 
-    public static void mostrarPizza(int numeroDeOrden, Pizza pizza) {
-        String informacionPizza;
+    public static void showInformation(int numeroDeOrden, Pizza pizza) {
+        String information;
 
-        informacionPizza =  """
+        information =  """
                 ** Pizza %d **
-                Diámetro = %d
+                Diámetro = %d cm
                 Ingredientes especiales = %b
-                Precio Pizza = %d$
-                Área de la pizza = %f
+                Precio Pizza = $ %d
+                Área de la pizza = %.2f cm^2
                 """.formatted(
                     numeroDeOrden,
-                    pizza.getDiametro(),
-                    pizza.getIngredientesEspeciales(),
-                    pizza.getPrecio(),
+                    pizza.getDiameter(),
+                    pizza.getSpecialIngredients(),
+                    pizza.getPrice(),
                     pizza.getArea()
                 );
 
-        System.out.println(informacionPizza);
+        System.out.println(information);
     }
 }

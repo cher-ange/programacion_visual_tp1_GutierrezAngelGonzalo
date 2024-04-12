@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import ar.edu.unju.fi.ejercicio6.model.Persona;
+import ar.edu.unju.fi.ejercicio6.model.Person;
 
 /**
  * 6. Uso de constructores de clase - métodos - creación de objetos.
@@ -16,89 +16,86 @@ public class Main {
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Persona constructorVacio;
-        Persona constructorParametrizado;
-        Persona constructorConCampoInicializado;
+        Person emptyConstructor;
+        Person parameterizedConstructor;
+        Person fieldInitializedConstructor;
 
         try (scanner) {
-            mensajeEntrada("Ingrese los datos para el constructor vacío");
-            constructorVacio = invocarConstructorVacio();
-            mensajeSalida(constructorVacio,"constructor vacío");
+            emptyConstructor = callEmptyConstructor();
+            emptyConstructor.showInformation();
 
-            mensajeEntrada("Ingrese los datos para el constructor parametrizado");
-            constructorParametrizado = invocarConstructorParametrizado();
-            mensajeSalida(constructorParametrizado,"constructor parametrizado");
+            parameterizedConstructor = callParameterizedConstructor();
+            parameterizedConstructor.showInformation();
 
-            mensajeEntrada("Ingrese los datos para el constructor con campo inicializado");
-            constructorConCampoInicializado = invocarConstructorConCampoInicializado();
-            mensajeSalida(constructorConCampoInicializado, "constructor con campo inicializado");
+            fieldInitializedConstructor = callFieldInitializedConstructor();
+            fieldInitializedConstructor.showInformation();
         } catch (InputMismatchException exception) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
-
     }
 
-    public static void mensajeSalida(Persona persona, final String mensaje) {
-        System.out.println("===== Información sobre el " + mensaje + " =====");
-        persona.mostrarInformacionPersonal();
+    public static Person callEmptyConstructor() {
+        Person person = new Person();
+
+        System.out.println("Introduce los datos para el constructor vacío");
+
+        person.setId(getString("Introduzca su DNI"));
+        person.setName(getString("Introduzca su nombre"));
+        person.setBirthdate(getBirthdate("Introduzca su fecha de nacimiento"));
+        person.setProvince(getString("Introduzca la provincia en donde nacío"));
+
+        return person;
     }
 
-    public static Persona invocarConstructorVacio() {
-        Persona persona = new Persona();
+    public static Person callParameterizedConstructor() {
+        System.out.println("Introduce los datos para el constructor parametrizado");
 
-        persona.setDni(ingresarCadenaDeCaracteres("Introduzca su DNI"));
-        persona.setNombre(ingresarCadenaDeCaracteres("Introduza su nombre"));
-        persona.setFechaDeNacimiento(ingresarFechaDeNacimiento("Introduzca su fecha de nacimiento"));
-        persona.setProvincia(ingresarCadenaDeCaracteres("Introduzca la province en donde nacío"));
-
-        return persona;
-    }
-
-    public static Persona invocarConstructorParametrizado() {
-        return new Persona(
-            ingresarCadenaDeCaracteres("Introduzca su DNI"),
-            ingresarCadenaDeCaracteres("Introduza su nombre"),
-            ingresarFechaDeNacimiento("Introduzca su fecha de nacimiento"),
-            ingresarCadenaDeCaracteres("Introduzca la province en donde nacío")
+        return new Person(
+            getString("Introduzca su DNI"),
+            getString("Introduzca su nombre"),
+            getBirthdate("Introduzca su fecha de nacimiento"),
+            getString("Introduzca la province en donde nacío")
         );
     }
 
-    public static Persona invocarConstructorConCampoInicializado() {
-        return new Persona(
-            ingresarCadenaDeCaracteres("Introduzca su DNI"),
-            ingresarCadenaDeCaracteres("Introduza su nombre"),
-            ingresarFechaDeNacimiento("Introduzca su fecha de nacimiento")
+    public static Person callFieldInitializedConstructor() {
+        System.out.println("Introduce los datos para el constructor con campo inicializado");
+
+        return new Person(
+            getString("Introduzca su DNI"),
+            getString("Introduzca su nombre"),
+            getBirthdate("Introduzca su fecha de nacimiento")
         );
     }
 
-    private static void mensajeEntrada(final String mensaje) {
-        System.out.println("===== " + mensaje + " =====");
-    }
-
-    public static String ingresarCadenaDeCaracteres(String mensaje) {
-        System.out.print(mensaje + ": ");
+    public static String getString(String message) {
+        System.out.print(message + ": ");
         return scanner.nextLine();
     }
 
-    public static Integer ingresarNumero(String mensaje) {
-        final int integerInput;
-        System.out.print(mensaje + ": ");
+    public static Integer getInteger(String message) {
+        int integerValue;
 
-        integerInput = scanner.nextInt();
-        scanner.nextLine();
-
-        return integerInput;
+        while (true) {
+            System.out.print(message + ": ");
+            try {
+                integerValue = Integer.parseInt(scanner.nextLine());
+                return integerValue;
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado debe ser un número entero");
+            }
+        }
     }
 
-    public static LocalDate ingresarFechaDeNacimiento(String mensaje) {
-        final int dia, mes, periodo;
+    public static LocalDate getBirthdate(String message) {
+        final int day, month, year;
 
-        System.out.println(mensaje);
+        System.out.println(message);
 
-        dia = ingresarNumero("Día");
-        mes = ingresarNumero("Mes");
-        periodo = ingresarNumero("Año");
+        day = getInteger("Día");
+        month = getInteger("Mes");
+        year = getInteger("Año");
 
-        return LocalDate.of(periodo, mes, dia);
+        return LocalDate.of(year, month, day);
     }
 }

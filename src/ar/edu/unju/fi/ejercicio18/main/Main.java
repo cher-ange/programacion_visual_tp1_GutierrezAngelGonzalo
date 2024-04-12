@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.ejercicio18.main;
 
-import ar.edu.unju.fi.ejercicio17.model.Player;
 import ar.edu.unju.fi.ejercicio18.model.Country;
 import ar.edu.unju.fi.ejercicio18.model.TouristicDestiny;
 
@@ -44,7 +43,7 @@ public class Main {
                 switch (selectedOption) {
                     case 1 -> addTouristicDestiny(touristicDestinies);
                     case 2 -> showAllTouristicDestinies(touristicDestinies);
-                    case 3 -> modifyCountryOfTouristicDestiny(touristicDestinies);
+                    case 3 -> editCountryOfTouristicDestiny(touristicDestinies);
                     case 4 -> cleanListOfTouristicDestinies(touristicDestinies);
                     case 5 -> deleteTouristicDestinyByCode(
                             touristicDestinies,
@@ -67,6 +66,11 @@ public class Main {
     }
 
     //region Menu options
+
+    /**
+     * Agrega un destino turístico a la lista de destinos turísticos.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
     public static void addTouristicDestiny(ArrayList<TouristicDestiny> touristicDestinies) {
         TouristicDestiny touristicDestiny = new TouristicDestiny();
 
@@ -75,7 +79,11 @@ public class Main {
         touristicDestinies.add(touristicDestiny);
     }
 
-    public static void modifyCountryOfTouristicDestiny(ArrayList<TouristicDestiny> touristicDestinies) {
+    /**
+     * Modifica los datos del país de un destino turístico solicitado por el usuario.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
+    public static void editCountryOfTouristicDestiny(ArrayList<TouristicDestiny> touristicDestinies) {
         if (touristicDestinies.isEmpty()) {
             emptyListErrorMessage();
         } else {
@@ -87,6 +95,10 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra todos los destinos turísticos registrados.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
     public static void showAllTouristicDestinies(ArrayList<TouristicDestiny> touristicDestinies) {
         if (touristicDestinies.isEmpty()) {
             emptyListErrorMessage();
@@ -97,10 +109,19 @@ public class Main {
         }
     }
 
+    /**
+     * Borra todos los destinos turísticos registrados.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
     public static void cleanListOfTouristicDestinies(ArrayList<TouristicDestiny> touristicDestinies) {
         touristicDestinies.clear();
     }
 
+    /**
+     * Elimina un destino turístico según código ingresado por el usuario.
+     * @param touristicDestinies Lista de destinos turísticos
+     * @param code  Código ingresado por el usuario
+     */
     public static void deleteTouristicDestinyByCode(ArrayList<TouristicDestiny> touristicDestinies, int code) {
         if (touristicDestinies.isEmpty()) {
             emptyListErrorMessage();
@@ -125,6 +146,10 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los destinos turísticos por nombre.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
     public static void showTouristicDestiniesByName(ArrayList<TouristicDestiny> touristicDestinies) {
         if (touristicDestinies.isEmpty()) {
             emptyListErrorMessage();
@@ -136,6 +161,10 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los destinos turísticos por país.
+     * @param touristicDestinies Lista de destinos turísticos
+     */
     public static void showTouristicDestiniesByCountryCode(ArrayList<TouristicDestiny> touristicDestinies) {
         if (touristicDestinies.isEmpty()) {
             emptyListErrorMessage();
@@ -157,6 +186,11 @@ public class Main {
     //endregion
 
     //region Helpers
+
+    /**
+     * Permite el ingreso de los datos de un destino turístico.
+     * @param touristicDestiny Destino turístico
+     */
     public static void inputTouristicDestinyData(TouristicDestiny touristicDestiny) {
 //        touristicDestiny.setCode(getInteger("Introduce el código"));
         touristicDestiny.setName(getString("Introduce el nombre"));
@@ -170,6 +204,11 @@ public class Main {
         country.setName(getString("Introduce el nombre"));
     }
 
+    /**
+     * Encuentra un destino turístico según su código.
+     * @param touristicDestinies Lista de destinos turísticos
+     * @return Un destino turístico
+     */
     public static TouristicDestiny getTouristicDestinyByCode(ArrayList<TouristicDestiny> touristicDestinies) {
         int touristicDestinyCode;
 
@@ -194,6 +233,11 @@ public class Main {
         return false;
     }
 
+    /**
+     * Encuentra un país según su código.
+     * @param message Mensaje de búsqueda
+     * @return Un país
+     */
     public static Country getCountryByCode(String message) {
         int countryCode;
 
@@ -218,6 +262,9 @@ public class Main {
         return false;
     }
 
+    /**
+     * Muestra una lista de los países almacenados.
+     */
     public static void getListOfCountries() {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -248,6 +295,10 @@ public class Main {
                 """);
     }
 
+    /**
+     * Muestra información acerca de un destino turístico.
+     * @param touristicDestiny Destino turístico
+     */
     public static void showTouristicDestinyInformation(TouristicDestiny touristicDestiny) {
         System.out.print(touristicDestiny.toString());
     }
@@ -324,6 +375,5 @@ public class Main {
     public static void touristicDestinyNotFoundErrorMessage(int code) {
         System.out.printf("ERROR: El destino turístico con el código n.º %d no se encuentra en la lista de destinos turísticos%n", code);
     }
-
     //endregion
 }

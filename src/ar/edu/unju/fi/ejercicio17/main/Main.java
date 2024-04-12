@@ -71,7 +71,7 @@ public class Main {
 
     /**
      * Agrega un jugador a la lista de jugadores.
-     * @param players   Una lista
+     * @param players   Una lista de <code>Player</code>
      */
     public static void addPlayer(ArrayList<Player> players) {
         Player player = new Player();
@@ -204,7 +204,7 @@ public class Main {
 
     /**
      * Permite el ingreso de los datos de un jugador.
-     * @param player    Un <code>Player</code> con sus datos completos
+     * @param player    Jugador con sus datos completos
      */
     public static void inputPlayerData(Player player) {
         player.setName(getString("Ingresar nombre"));
@@ -223,7 +223,7 @@ public class Main {
 
     /**
      * Ingresa la posición del jugador
-     * @return  <code>String</code> de la posición del jugador escogida
+     * @return  La posición del jugador escogida
      */
     public static String getPosition() {
         String[] positions = {
@@ -253,8 +253,8 @@ public class Main {
     }
 
     /**
-     * Permite crear un <code>LocalDate</code> a partir del día, mes y año introducidos por el usuario.
-     * @return  <code>LocalDate</code> a partir de los datos ingresados por el usuario.
+     * Permite crear una fecha a partir del día, mes y año introducidos por el usuario.
+     * @return  Fecha a partir de los datos ingresados por el usuario.
      */
     public static LocalDate getBirthdate() {
         final int day, month, year;
@@ -311,7 +311,7 @@ public class Main {
 
     /**
      * Permite ingresar una opción del menú.
-     * @return  <code>byte</code> que corresponde con la opción seleccionada
+     * @return  Código que corresponde con la opción seleccionada
      */
     public static byte enterOption() {
         byte selectedOption;

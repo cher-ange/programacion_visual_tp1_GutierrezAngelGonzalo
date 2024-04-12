@@ -5,26 +5,26 @@ package ar.edu.unju.fi.ejercicio10.model;
  * @version 1.0
  */
 public class Pizza {
-    private final Integer adicionalIngredientesEspeciales20 = 500;
-    private final Integer adicionalIngredientesEspeciales30 = 750;
-    private final Integer adicionalIngredientesEspeciales40 = 1000;
+    private final Integer additionalSpecialIngredients20 = 500;
+    private final Integer additionalSpecialIngredients30 = 750;
+    private final Integer additionalSpecialIngredients40 = 1000;
 
-    private Integer diametro;
-    private Integer precio;
+    private Integer diameter;
+    private Integer price;
     private Double area;
-    private Boolean ingredientesEspeciales;
+    private Boolean specialIngredients;
 
-    public Integer getDiametro() {
-        return diametro;
+    public Integer getDiameter() {
+        return diameter;
     }
-    public void setDiametro(Integer diametro) {
-        this.diametro = diametro;
+    public void setDiameter(Integer diameter) {
+        this.diameter = diameter;
     }
-    public Integer getPrecio() {
-        return precio;
+    public Integer getPrice() {
+        return price;
     }
-    public void setPrecio(Integer precio) {
-        this.precio = precio;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
     public Double getArea() {
         return area;
@@ -32,45 +32,45 @@ public class Pizza {
     public void setArea(Double area) {
         this.area = area;
     }
-    public Boolean getIngredientesEspeciales() {
-        return ingredientesEspeciales;
+    public Boolean getSpecialIngredients() {
+        return specialIngredients;
     }
-    public void setIngredientesEspeciales(Boolean ingredientesEspeciales) {
-        this.ingredientesEspeciales = ingredientesEspeciales;
+    public void setSpecialIngredients(Boolean specialIngredients) {
+        this.specialIngredients = specialIngredients;
     }
 
-    public void calcularPrecio() {
-        int precio;
+    public void calculatePrice() {
+        int price;
 
-        switch (diametro) {
+        switch (diameter) {
             case 20:
-                if (!ingredientesEspeciales) {
-                    precio = this.precio = 4500;
+                if (!specialIngredients) {
+                    price = this.price = 4500;
                 } else {
-                    precio = this.precio = 4500 + adicionalIngredientesEspeciales20;
+                    price = this.price = 4500 + additionalSpecialIngredients20;
                 }
                 break;
             case 30:
-                if (!ingredientesEspeciales) {
-                    precio = this.precio = 4800;
+                if (!specialIngredients) {
+                    price = this.price = 4800;
                 } else {
-                    precio = this.precio = 4800 + adicionalIngredientesEspeciales30;
+                    price = this.price = 4800 + additionalSpecialIngredients30;
                 }
                 break;
             case 40:
-                if (!ingredientesEspeciales) {
-                    precio = this.precio = 5500;
+                if (!specialIngredients) {
+                    price = this.price = 5500;
                 } else {
-                    precio = this.precio = 5500 + adicionalIngredientesEspeciales40;
+                    price = this.price = 5500 + additionalSpecialIngredients40;
                 }
                 break;
             default:
-                precio = this.precio;
+                price = this.price;
                 break;
         }
     }
 
-    public void calcularArea() {
-        this.area = Math.PI * Math.pow((double) this.diametro / 2, 2);
+    public void calculateArea() {
+        this.area = Math.PI * Math.pow((double) this.diameter / 2, 2);
     }
 }

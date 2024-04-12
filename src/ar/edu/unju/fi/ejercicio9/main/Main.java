@@ -3,7 +3,7 @@ package ar.edu.unju.fi.ejercicio9.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import ar.edu.unju.fi.ejercicio9.model.Producto;
+import ar.edu.unju.fi.ejercicio9.model.Product;
 
 /**
  * 9. Uso de constructor de clase – métodos - creación de objetos.
@@ -16,70 +16,92 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            construirProductos();
+            buildProducts();
         } catch (InputMismatchException e) {
             System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
         }
     }
 
-    public static void construirProductos() {
-        Producto producto;
+    public static void buildProducts() {
+        Product product;
 
         for (int i = 0; i < 3; i++) {
             System.out.println("Ingrese datos del producto");
-            producto = new Producto();
-            producto.setNombre(ingresarNombre("Ingrese el nombre"));
-            producto.setCodigo(ingresarCodigo("Ingrese el código"));
-            producto.setPrecio(ingresarPrecio("Ingrese el precio"));
-            producto.setDescuento(ingresarDescuento("Ingrese el descuento", "El descuento esta comprendido entre [0-50]"));
-            producto.mostrarInformacionDelProducto();
+            product = new Product();
+            product.setName(getString("Ingrese el nombre"));
+            product.setCode(getInteger("Ingrese el código"));
+            product.setPrice(getDouble("Ingrese el precio"));
+            product.setDiscount(getByte(
+                    "Ingrese el descuento",
+                    "El descuento esta comprendido entre [0-50]")
+            );
+            product.showInformation();
 
-            System.out.println("Producto con descuento: " + producto.calcularDescuento());
+            System.out.println("Producto con descuento: " + product.calculateProductWithDiscount());
         }
     }
 
-    public static String ingresarNombre(final String mensaje) {
-        System.out.print(mensaje + ": ");
+    public static String getString(final String message) {
+        System.out.print(message + ": ");
         return scanner.nextLine();
     }
 
-    public static int ingresarCodigo(final String mensaje) {
-        int codigo;
+    public static int getInteger(final String message) {
+        int integerValue;
 
-        System.out.print(mensaje + ": ");
-        codigo = scanner.nextInt();
-        scanner.nextLine();
-
-        return codigo;
-    }
-
-    public static double ingresarPrecio(final String mensaje) {
-        double precio;
-
-        System.out.print(mensaje + ": ");
-        precio = scanner.nextDouble();
-        scanner.nextLine();
-
-        return precio;
-    }
-
-    public static byte ingresarDescuento(final String mensajeEntrada, final String mensajeError) {
-        byte descuento;
-
-        while(true) {
-            System.out.print(mensajeEntrada + ": ");
-            descuento = scanner.nextByte();
-
-            if (!seEncuentraEnRangoValido(descuento)) {
-                System.out.println("ERROR: " + mensajeError);
-            } else {
-                scanner.nextLine();
-                return descuento;
+        while (true) {
+            inputMessage(message);
+            try {
+                integerValue = Integer.parseInt(scanner.nextLine());
+                return integerValue;
+            } catch (NumberFormatException e) {
+                errorMessage("El valor ingresado debe ser un número entero");
             }
         }
     }
 
-    public static boolean seEncuentraEnRangoValido(final byte descuento) {
-        return !(descuento < 0 || descuento > 50);
+    public static double getDouble(final String message) {
+        double doubleValue;
+
+        while (true) {
+            inputMessage(message);
+            try {
+                doubleValue = Double.parseDouble(scanner.nextLine());
+                return doubleValue;
+            } catch (NumberFormatException e) {
+                errorMessage("El valor ingresado debe ser un número");
+            }
+        }
+    }
+
+    public static byte getByte(final String inputMessage, final String errorMessage) {
+        byte byteValue;
+
+        while (true) {
+            inputMessage(inputMessage);
+            try {
+                byteValue= Byte.parseByte(scanner.nextLine());
+
+                if (isInRange(byteValue)) {
+                    return byteValue;
+                } else {
+                    errorMessage(errorMessage);
+                }
+            } catch (NumberFormatException e) {
+                errorMessage("El valor ingresado debe ser un número");
+            }
+        }
+    }
+
+    public static boolean isInRange(final byte discount) {
+        return !(discount < 0 || discount > 50);
+    }
+
+    public static void inputMessage(String message) {
+        System.out.print(message + ": ");
+    }
+
+    public static void errorMessage(String message) {
+        System.out.println("ERROR: " + message);
     }
 }

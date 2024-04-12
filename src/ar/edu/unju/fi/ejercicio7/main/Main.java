@@ -3,7 +3,7 @@ package ar.edu.unju.fi.ejercicio7.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import ar.edu.unju.fi.ejercicio7.model.Empleado;
+import ar.edu.unju.fi.ejercicio7.model.Employee;
 
 /**
  * 7. Uso de constructor de clase - métodos - constantes - creación de objetos.
@@ -12,54 +12,69 @@ import ar.edu.unju.fi.ejercicio7.model.Empleado;
  * @version 1.0
  */
 public class Main {
-
     static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Empleado empleado;
-        final String nombre;
-        final int legajo;
-        final double salario;
+        Employee employee;
+        final String name;
+        final int personalFile;
+        final double salary;
 
         try (scanner) {
             System.out.println("Ingreso de datos del empleado");
 
-            nombre = ingresarNombre("Ingrese el nombre");
-            legajo = ingresarLegajo("Ingrese el número de legajo");
-            salario = ingresarSalario("Ingrese el salario a percibir");
+            name = getString("Ingrese el nombre");
+            personalFile = getInteger("Ingrese el número de legajo");
+            salary = getDouble("Ingrese el salario a percibir");
 
-            empleado = new Empleado(nombre, legajo, salario);
+            employee = new Employee(name, personalFile, salary);
 
-            empleado.mostrarInformacionDelEmpleado();
-            empleado.incrementarSalario();
-            empleado.mostrarInformacionDelEmpleado();
+            employee.showInformation();
+            employee.increaseSalary();
+            employee.showInformation();
         } catch (InputMismatchException e) {
-            System.out.println("ERROR: Ocurrió un error durante la ejecución del programa");
+            errorMessage("Ocurrió un error durante la ejecución del programa");
         }
     }
 
-    public static String ingresarNombre(final String mensaje) {
-        System.out.print(mensaje + ": ");
+    public static String getString(final String message) {
+        inputMessage(message);
         return scanner.nextLine();
     }
 
-    public static int ingresarLegajo(final String mensaje) {
-        final int legajo;
+    public static int getInteger(final String message) {
+        int integerValue;
 
-        System.out.print(mensaje + ": ");
-        legajo = scanner.nextInt();
-        scanner.nextLine();
-
-        return legajo;
+        while (true) {
+            inputMessage(message);
+            try {
+                integerValue = Integer.parseInt(scanner.nextLine());
+                return integerValue;
+            } catch (NumberFormatException e) {
+                errorMessage("El valor ingresado debe ser un número entero");
+            }
+        }
     }
 
-    public static double ingresarSalario(final String mensaje) {
-        final double salario;
+    public static double getDouble(final String message) {
+        double doubleValue;
 
-        System.out.print(mensaje + ": ");
-        salario = scanner.nextDouble();
-        scanner.nextLine();
+        while (true) {
+            inputMessage(message);
+            try {
+                doubleValue = Double.parseDouble(scanner.nextLine());
+                return doubleValue;
+            } catch (NumberFormatException e) {
+                errorMessage("El valor ingresado debe ser un número");
+            }
+        }
+    }
 
-        return salario;
+    public static void inputMessage(String message) {
+        System.out.print(message + ": ");
+    }
+
+    public static void errorMessage(String message) {
+        System.out.println("ERROR: " + message);
     }
 }
