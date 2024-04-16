@@ -84,8 +84,8 @@ public class Person {
         this.province = province;
     }
 
-    public int getAge(LocalDate brithdate) {
-        return Period.between(brithdate, LocalDate.now()).getYears();
+    public int getAge(LocalDate birthdate) {
+        return Period.between(birthdate, LocalDate.now()).getYears();
     }
 
     public boolean isUnderAge(final int age) {
